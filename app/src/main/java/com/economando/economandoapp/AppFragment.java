@@ -23,6 +23,7 @@ import com.economando.economandoapp.entities.CustomWebViewClient;
 
 public class AppFragment extends Fragment {
 
+    public static final String URL = "http://192.168.33.20:8000/";
     private WebView wvEconomando;
 
     public AppFragment() {
@@ -59,7 +60,7 @@ public class AppFragment extends Fragment {
 
 
                 CookieManager cookieManager = CookieManager.getInstance();
-                String cookie = cookieManager.getCookie("http://192.168.33.20:8000/");
+                String cookie = cookieManager.getCookie(URL);
                 request.addRequestHeader("Cookie", cookie);
 
                 for (String part : dispositionParts) {
