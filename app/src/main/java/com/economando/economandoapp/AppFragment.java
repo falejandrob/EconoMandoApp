@@ -100,7 +100,7 @@ public class AppFragment extends Fragment {
     private void initSettings() {
         wvEconomando = getView().findViewById(R.id.wv_EconoMando);
         wvEconomando.setWebViewClient(new CustomWebViewClient(getContext()));
-        wvEconomando.loadUrl("http://192.168.33.20:8000/");
+        wvEconomando.loadUrl(URL);
         WebSettings webSettings = wvEconomando.getSettings();
         webSettings.setJavaScriptEnabled(true);
     }
