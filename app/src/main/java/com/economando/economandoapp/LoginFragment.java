@@ -26,7 +26,7 @@ import retrofit2.Retrofit;
 
 public class LoginFragment extends Fragment {
 
-    public static final String BASE_URL = "http://192.168.33.20:8000/api/";
+    public static final String BASE_URL = "http://telamarinera.zapto.org:16010/api/";
     private EditText et_email, et_Password;
     private Button btn_Confirm_Login;
     private UserService userService;

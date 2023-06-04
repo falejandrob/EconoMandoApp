@@ -35,7 +35,7 @@ import retrofit2.Retrofit;
 
 public class RegisterFragment extends Fragment {
 
-    public static final String BASE_URL = "http://192.168.33.20:8000/api/";
+    public static final String BASE_URL = "http://telamarinera.zapto.org:16010/api/";
     private Button btnBack;
     private Button btnConfirmRegister;
     private EditText etName;

@@ -26,7 +26,7 @@ import retrofit2.Retrofit;
 
 public class WithTokenFragment extends Fragment {
 
-    public static final String BASE_URL = "http://192.168.33.20:8000/api/";
+    public static final String BASE_URL = "http://telamarinera.zapto.org:16010/api/";
     private UserService userService;
 
     public WithTokenFragment() {
