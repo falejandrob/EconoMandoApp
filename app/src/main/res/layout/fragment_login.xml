@@ -7,10 +7,24 @@
     android:layout_height="match_parent"
     android:background="#FFFBDA">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:src="@drawable/camion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
     <EditText
         android:id="@+id/et_Username"
         android:layout_width="365dp"
         android:layout_height="47dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#C80000"
         android:hint="Email"
         android:textColor="#C80000"
@@ -25,7 +39,9 @@
         android:id="@+id/et_Password"
         android:layout_width="365dp"
         android:layout_height="46dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="16dp"
         android:backgroundTint="#C80000"
         android:hint="Contraseña"
         android:inputType="textPassword"

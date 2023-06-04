@@ -33,5 +33,20 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.674" />
+        app:layout_constraintVertical_bias="0.499" />
+
+    <Button
+        android:id="@+id/btn_Salir"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C80000"
+        android:fontFamily="sans-serif-medium"
+        android:text="Salir"
+        android:textColor="#FFFBDA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.649" />
 </androidx.constraintlayout.widget.ConstraintLayout>

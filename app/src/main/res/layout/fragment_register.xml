@@ -118,4 +118,16 @@
         app:layout_constraintTop_toBottomOf="@+id/et_ConfirmPassword"
         app:layout_constraintVertical_bias="0.01" />
 
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="58dp"
+        android:layout_height="53dp"
+        android:src="@drawable/camion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

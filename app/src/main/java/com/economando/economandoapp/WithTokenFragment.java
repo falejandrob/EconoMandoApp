@@ -4,8 +4,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +27,11 @@ public class WithTokenFragment extends Fragment {
     public static final String BASE_URL = "http://telamarinera.zapto.org:16010/api/";
     private UserService userService;
 
+    private Button btnInicio;
+    private Button btnSalir;
+    private SharedPreferences sharedPreferences;
+    private String token;
+
     public WithTokenFragment() {
         // Required empty public constructor
     }
@@ -36,6 +39,7 @@ public class WithTokenFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Init Api
         Retrofit retrofit = RetrofitClient.getClient(BASE_URL);
         userService = retrofit.create(UserService.class);
     }
@@ -44,8 +48,15 @@ public class WithTokenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_with_token, container, false);
-        Button btn_inicio = view.findViewById(R.id.btn_Inicio);
-        btn_inicio.setOnClickListener(new View.OnClickListener() {
+        initSetting(view);
+        btnSalir.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            sharedPreferences.edit().clear().apply();
+            getActivity().finishAffinity();
+            }
+        });
+        btnInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginUserWithToken();
@@ -55,9 +66,14 @@ public class WithTokenFragment extends Fragment {
         return view;
     }
 
+    private void initSetting(View view) {
+        btnInicio = view.findViewById(R.id.btn_Inicio);
+        btnSalir = view.findViewById(R.id.btn_Salir);
+        sharedPreferences = getActivity().getSharedPreferences("mySharedPreferences", getContext().MODE_PRIVATE);
+        token = sharedPreferences.getString("token", null);
+    }
+
     private void loginUserWithToken() {
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("mySharedPreferences", getContext().MODE_PRIVATE);
-        String token = sharedPreferences.getString("token", null);
         Log.d("Token",token);
 
         if(token == null) {
@@ -93,10 +109,14 @@ public class WithTokenFragment extends Fragment {
         args.putString("homeUrl", homeUrl);
         args.putString("cookie", cookie);
         webFragment.setArguments(args);
+        navigateToFragment(webFragment);
+    }
+
+    private void navigateToFragment(Fragment fragment) {
         getActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragmentContainerView,webFragment)
+                .replace(R.id.fragmentContainerView, fragment)
                 .addToBackStack(null)
                 .commit();
     }
