@@ -98,30 +98,6 @@ public class WebFragment extends Fragment {
             }
         });
     }
-
-/*    private void initSettings() {
-        wvEconomando = getView().findViewById(R.id.wv_EconoMando);
-        wvEconomando.setWebViewClient(new CustomWebViewClient(getContext()));
-
-
-        // Obtener los argumentos
-        Bundle args = getArguments();
-        if (args != null) {
-            String homeUrl = args.getString("homeUrl");
-            URL = homeUrl;
-            configureWebView();
-            String cookie = args.getString("cookie");
-            Log.d("COOKIE",cookie);
-            Log.d("URL",homeUrl);
-            wvEconomando.loadUrl(homeUrl);
-            CookieManager cookieManager = CookieManager.getInstance();
-            cookieManager.setAcceptCookie(true);
-            cookieManager.setCookie(homeUrl, cookie); // Establecer la cookie en el WebView
-        }
-
-        WebSettings webSettings = wvEconomando.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-    }*/
       private void initSettings() {
         wvEconomando = getView().findViewById(R.id.wv_EconoMando);
         wvEconomando.setWebViewClient(new CustomWebViewClient(getContext()));

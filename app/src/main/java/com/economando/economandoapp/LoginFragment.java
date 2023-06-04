@@ -79,7 +79,7 @@ public class LoginFragment extends Fragment {
                 if (response.isSuccessful()) {
                     User user = response.body();
                     // Manejar la respuesta del servidor, puedes navegar a otra pantalla aquí
-                    Toast.makeText(getActivity(), "Bienvenido " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Bienvenido ", Toast.LENGTH_SHORT).show();
                     String homeUrl = user.getHome_url();
                     String token = user.getToken();
                     String cookie = response.headers().get("Set-Cookie");
@@ -107,15 +107,17 @@ public class LoginFragment extends Fragment {
     }
 
     private void navigateToWebFragment(String homeUrl, String cookie) {
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
         WebFragment webFragment = new WebFragment();
         Bundle args = new Bundle();
         args.putString("homeUrl", homeUrl);
         args.putString("cookie", cookie);
         webFragment.setArguments(args);
-        transaction.replace(R.id.wv_EconoMando, webFragment);
-        transaction.commit();
+        getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainerView,webFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private void goBack() {

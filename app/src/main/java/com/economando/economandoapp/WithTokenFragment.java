@@ -88,14 +88,16 @@ public class WithTokenFragment extends Fragment {
     }
 
     private void navigateToWebFragment(String homeUrl, String cookie) {
-        FragmentManager fragmentManager = getParentFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
         WebFragment webFragment = new WebFragment();
         Bundle args = new Bundle();
         args.putString("homeUrl", homeUrl);
         args.putString("cookie", cookie);
         webFragment.setArguments(args);
-        transaction.replace(R.id.wv_EconoMando, webFragment);
-        transaction.commit();
+        getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainerView,webFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }

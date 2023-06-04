@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity {
             // El token está vacío, salta al fragmento fragment_without_token
             Fragment fragment = new WithoutTokenFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.wv_EconoMando, fragment)
+                    .replace(R.id.fragmentContainerView, fragment)
                     .commit();
         } else {
             // El token no está vacío, salta al fragmento fragment_with_token
             Fragment fragment = new WithTokenFragment();
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.wv_EconoMando, fragment)
+                    .replace(R.id.fragmentContainerView, fragment)
                     .commit();
         }
     }

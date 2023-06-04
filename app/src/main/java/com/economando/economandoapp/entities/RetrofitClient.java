@@ -13,18 +13,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import okhttp3.logging.HttpLoggingInterceptor;
 
+import java.util.Collections;
+import java.util.concurrent.ConcurrentHashMap;
+
 public class RetrofitClient {
     private static Retrofit retrofit = null;
 
     public static Retrofit getClient(String baseUrl) {
-        if (retrofit == null) {
-            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
-            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+        if (!baseUrl.endsWith("/")) {
+            throw new IllegalArgumentException("baseUrl must end in /");
+        }
 
+        if (retrofit == null) {
             OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(logging) // <-- Esto es nuevo
                     .cookieJar(new CookieJar() {
-                        private final HashMap<HttpUrl, List<Cookie>> cookieStore = new HashMap<>();
+                        private final ConcurrentHashMap<HttpUrl, List<Cookie>> cookieStore = new ConcurrentHashMap<>();
 
                         @Override
                         public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
@@ -34,7 +37,7 @@ public class RetrofitClient {
                         @Override
                         public List<Cookie> loadForRequest(HttpUrl url) {
                             List<Cookie> cookies = cookieStore.get(url);
-                            return cookies != null ? cookies : new ArrayList<Cookie>();
+                            return cookies != null ? cookies : Collections.emptyList();
                         }
                     })
                     .build();
@@ -48,6 +51,7 @@ public class RetrofitClient {
         return retrofit;
     }
 }
+
 
 
 

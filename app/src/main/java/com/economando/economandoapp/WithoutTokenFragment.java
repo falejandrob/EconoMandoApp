@@ -49,17 +49,21 @@ public class WithoutTokenFragment extends Fragment {
 
     private void openLoginFragment() {
         Fragment loginFragment = new LoginFragment();
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.wv_EconoMando, loginFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainerView,loginFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     private void openRegisterFragment() {
         Fragment registerFragment = new RegisterFragment();
-        FragmentTransaction transaction = getParentFragmentManager().beginTransaction();
-        transaction.replace(R.id.wv_EconoMando, registerFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
+        getActivity()
+                .getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainerView,registerFragment)
+                .addToBackStack(null)
+                .commit();
     }
 }
