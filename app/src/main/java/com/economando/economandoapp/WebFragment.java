@@ -4,6 +4,7 @@ import static android.content.Context.DOWNLOAD_SERVICE;
 
 import android.app.DownloadManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 import android.webkit.DownloadListener;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -21,12 +23,12 @@ import android.widget.Toast;
 
 import com.economando.economandoapp.entities.CustomWebViewClient;
 
-public class AppFragment extends Fragment {
+public class WebFragment extends Fragment {
 
-    public static final String URL = "http://192.168.33.20:8000/";
+    public String URL;
     private WebView wvEconomando;
 
-    public AppFragment() {
+    public WebFragment() {
     }
 
     @Override
@@ -45,7 +47,7 @@ public class AppFragment extends Fragment {
 
         initSettings();
 
-        configureWebView();
+
     }
 
     private void configureWebView() {
@@ -97,11 +99,67 @@ public class AppFragment extends Fragment {
         });
     }
 
-    private void initSettings() {
+/*    private void initSettings() {
         wvEconomando = getView().findViewById(R.id.wv_EconoMando);
         wvEconomando.setWebViewClient(new CustomWebViewClient(getContext()));
-        wvEconomando.loadUrl(URL);
+
+
+        // Obtener los argumentos
+        Bundle args = getArguments();
+        if (args != null) {
+            String homeUrl = args.getString("homeUrl");
+            URL = homeUrl;
+            configureWebView();
+            String cookie = args.getString("cookie");
+            Log.d("COOKIE",cookie);
+            Log.d("URL",homeUrl);
+            wvEconomando.loadUrl(homeUrl);
+            CookieManager cookieManager = CookieManager.getInstance();
+            cookieManager.setAcceptCookie(true);
+            cookieManager.setCookie(homeUrl, cookie); // Establecer la cookie en el WebView
+        }
+
+        WebSettings webSettings = wvEconomando.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+    }*/
+      private void initSettings() {
+        wvEconomando = getView().findViewById(R.id.wv_EconoMando);
+        wvEconomando.setWebViewClient(new CustomWebViewClient(getContext()));
+
+        // Obtener los argumentos
+        Bundle args = getArguments();
+        if (args != null) {
+            String homeUrl = args.getString("homeUrl");
+            URL = homeUrl;
+
+            // Configurar el WebView
+            configureWebView();
+
+            // Obtener las cookies
+            //String economandoSessionCookie = args.getString("cookie");
+            String economandoSessionCookie = args.getString("cookie");
+
+            Log.d("economando_session",""+economandoSessionCookie);
+
+            // Establecer las cookies en el WebView
+            CookieManager cookieManager = CookieManager.getInstance();
+            cookieManager.setAcceptCookie(true);
+            cookieManager.setCookie(homeUrl, economandoSessionCookie);
+
+            // Sincronizar las cookies con el WebView
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                cookieManager.flush();
+            } else {
+                CookieSyncManager.createInstance(getActivity());
+                CookieSyncManager.getInstance().sync();
+            }
+
+            // Cargar la URL en el WebView
+            wvEconomando.loadUrl(homeUrl);
+        }
+
         WebSettings webSettings = wvEconomando.getSettings();
         webSettings.setJavaScriptEnabled(true);
     }
+
 }

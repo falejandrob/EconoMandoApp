@@ -1,8 +1,12 @@
 package com.economando.economandoapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -19,5 +23,22 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         setContentView(R.layout.activity_main);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("mySharedPreferences", Context.MODE_PRIVATE);
+        String token = sharedPreferences.getString("token", "");
+
+        if (TextUtils.isEmpty(token)) {
+            // El token está vacío, salta al fragmento fragment_without_token
+            Fragment fragment = new WithoutTokenFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.wv_EconoMando, fragment)
+                    .commit();
+        } else {
+            // El token no está vacío, salta al fragmento fragment_with_token
+            Fragment fragment = new WithTokenFragment();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.wv_EconoMando, fragment)
+                    .commit();
+        }
     }
 }

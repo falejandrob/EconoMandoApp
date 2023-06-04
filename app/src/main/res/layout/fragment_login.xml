@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFBDA">
+
+    <EditText
+        android:id="@+id/et_Username"
+        android:layout_width="365dp"
+        android:layout_height="47dp"
+        android:backgroundTint="#C80000"
+        android:hint="Email"
+        android:textColor="#C80000"
+        android:textColorHint="#C80000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/et_Password"
+        android:layout_width="365dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="30dp"
+        android:backgroundTint="#C80000"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:textColor="#C80000"
+        android:textColorHint="#C80000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_Username"
+        app:layout_constraintVertical_bias="0.022" />
+
+    <Button
+        android:id="@+id/btn_Confirm_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C80000"
+        android:text="Iniciar Sesion"
+        android:textColor="#FFFBDA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_Password"
+        app:layout_constraintVertical_bias="0.174" />
+
+    <Button
+        android:id="@+id/btn_Back_Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#C80000"
+        android:text="Atras"
+        android:textColor="#FFFBDA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.092"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
