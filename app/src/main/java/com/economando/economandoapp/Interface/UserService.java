@@ -1,5 +1,6 @@
 package com.economando.economandoapp.Interface;
 
+import com.economando.economandoapp.entities.RegisterResponse;
 import com.economando.economandoapp.entities.User;
 
 import retrofit2.Call;
@@ -15,6 +16,16 @@ public interface UserService {
     @FormUrlEncoded
     @POST("loginToken")
     Call<User> loginWithToken(@Field(value = "token", encoded = true) String token);
+
+    @FormUrlEncoded
+    @POST("register")
+    Call<RegisterResponse> register(
+            @Field("nombre") String nombre,
+            @Field("apellidos") String apellidos,
+            @Field("email") String email,
+            @Field("password") String password,
+            @Field("password_confirmation") String passwordConfirmation
+    );
 
 }
 
